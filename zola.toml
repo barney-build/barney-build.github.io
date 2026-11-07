@@ -1,16 +1,78 @@
-# The URL the site will be built for
 base_url = "https://barney-build.github.io"
-
-# Whether to automatically compile all Sass files in the sass directory
+title = "barney"
+description = "Compositional operating system engineering"
+default_language = "en"
+theme = "devlab-theme"
 compile_sass = true
+build_search_index = true
 
-# Whether to build a search index to be used later on by a JavaScript library
-build_search_index = false
-
-[markdown]
+author = "Ikey Doherty"
+generate_feeds = true
+feed_filenames = ["atom.xml"]
+taxonomies = [
+  { name = "tags", paginate_by = 10 },
+  { name = "authors", feed = true },
+]
 
 [markdown.highlighting]
-theme = "catppuccin-mocha"
+light_theme = "github-light"
+dark_theme = "github-dark"
 
-[extra]
-# Put all your custom variables here
+[extra.devlab.collections.understanding]
+section = "docs/current/understanding/_index.md"
+navigation = [
+   # { section = "docs/understanding/_index.md" }
+]
+
+[extra.devlab.collections.using]
+section = "docs/current/using/_index.md"
+navigation = [
+   #{ section = "docs/using/_index.md" }
+]
+
+[extra.devlab.collections.extending]
+section = "docs/current/extending/_index.md"
+navigation = [
+   #{ section = "docs/using/_index.md" }
+]
+
+
+[extra.devlab.collections.reference]
+section = "docs/current/reference/_index.md"
+navigation = [
+   #{ section = "docs/using/_index.md" }
+]
+
+[extra.devlab.collections.docs]
+section = "docs/_index.md"
+
+
+[extra.devlab.navigation]
+links = [
+    { name = "Home", path = "/" },
+    { name = "Docs", path = "@/docs/current/_index.md" },
+    { name = "Roadmap", path = "@/roadmap.md" },
+    { name = "Downloads", path = "/downloads/" },
+    { name = "About", path = "/about/" },
+    { name = "Contribute", path = "/contribute/" }
+]
+
+[extra.devlab.announcement]
+show = true
+key = "under-development"
+label = "Under development"
+message = "Not everything is in place yet. Check our progress on the roadmap"
+path = "@/roadmap.md"
+dismissible = false
+
+[extra.devlab.brand]
+logo_text = "barney"
+footer_text = "Ikey Doherty"
+show_logo_mark = true
+logo_mark_path = "/images/barney/barney-symbol.svg"
+
+[extra.devlab.footer]
+links_label = "useful links"
+links = [
+    { name = "github", path = "https://github.com/barney-build", icon = "github" },
+]

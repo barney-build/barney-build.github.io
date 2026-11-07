@@ -1,0 +1,17 @@
+mode = "single"
+eyebrow = "Downloads"
+description = "Downloads are not yet available"
+
+[[channel]]
+id = "preview"
+label = "Preview"
+description = "Upcoming builds for testing."
+
+[[product]]
+id = "barney"
+name = "Barney"
+
+[[product.artifact]]
+channel = "preview"
+name = "Preview archive"
+status = "development"
