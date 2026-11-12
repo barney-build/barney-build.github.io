@@ -10,7 +10,7 @@ type = "hero"
 eyebrow = "Building for people, tools and agents."
 title = "Bring your own OS."
 description = "Build the operating system you need. Own the engineering behind it — and give people, tools and AI agents a common way to work with it."
-image = "/images/hero_big.png"
+image = "/images/hero_syntax.png"
 actions = [
     { label = "Explore Barney", path = "/about/" },
     { label = "See how .bny works", path = "/docs/bny/" }
@@ -138,11 +138,14 @@ variant "bootstrap" {
 Dependencies can depend on a setting or use a particular variant. Bootstrap variants can help break dependency cycles.
 
 ```kdl,name=util-linux.bny
-depends {
-    build {
-        (binary)make
-        util-linux variant="bootstrap" conflicts=(prop)with_systemd
-        systemd if=(prop)with_systemd
+requires {
+    (binary)make
+
+    match (prop)with_systemd {
+        when #true {
+            util-linux variant="bootstrap"
+            systemd
+        } otherwise {}
     }
 }
 ```
@@ -157,9 +160,6 @@ Build and installation are separate steps. Recipes can call actions provided by 
 build {
     autotools::configure enable=(prop)enabled disable=(prop)disabled
     autotools::make
-}
-
-install {
     autotools::make_install
 }
 ```
